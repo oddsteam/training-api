@@ -10,7 +10,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   DOCKER_IMAGE: 844772501268.dkr.ecr.ap-southeast-1.amazonaws.com/training-api
   DOCKER_REGISTRY: 844772501268.dkr.ecr.ap-southeast-1.amazonaws.com
-  DB_URI: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  DB_URI: ${{ secrets.DB_URI_DEV }}
 
 jobs:
   ci:
