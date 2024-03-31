@@ -10,7 +10,7 @@ const EnrollmentModel = require('./models/enrollment');
 
 
 const app = express();
-const PORT = process.env.PORT || 3009;
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 
