@@ -79,4 +79,6 @@ jobs:
             echo "$DOCKER_IMAGE_WITH_TAG"
             aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 844772501268.dkr.ecr.ap-southeast-1.amazonaws.com
             docker pull $DOCKER_IMAGE_WITH_TAG
-            docker run -p 3001:3001 $DOCKER_IMAGE_WITH_TAG
+            docker stop training-api
+            docker rm training-api
+            docker run -p 3001:3001 --name training-api -d $DOCKER_IMAGE_WITH_TAG
