@@ -17,6 +17,6 @@ const classSchema = new Schema({
     maxParticipant: String,
 });
 
-const ClassModel = mongoose.model('Classes', classSchema);
+const ClassModel = mongoose.model('Classesxxx', classSchema);
 
-module.exports = classDeatilsModel;
+module.exports = ClassModel;

@@ -1,9 +1,9 @@
-const ClassModel = require("../models/course");
+const classDeatilsModel = require("../models/classDetails");
 
 export const getClasses = async (req, res) => {
   // const today = new Date()
   const condition = {} //{ startDate: { $gte: today } }
-  const data = await ClassModel.find(condition);
+  const data = await classDeatilsModel.find(condition);
   
   res.json({ data });
 };
