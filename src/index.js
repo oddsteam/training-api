@@ -40,6 +40,22 @@ app.post("/register", (req, res) => {
   res.send("register");
 });
 
+app.get("/course/:courseId", (req, res) => {
+  const courseId = req.params.courseId;
+  res.send([{
+    courseName: "Test Course",
+    outline: "course outline",
+    agenda: "course agenda",
+    afterSaleService: "after sale service",
+    images: ["a", "b"],
+    trainer: [{
+      name: "I AM",
+      image: "c",
+      experience: "trainer experience"
+    }]
+  }]);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
