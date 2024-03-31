@@ -5,6 +5,7 @@ import classRouter from "./routers/class";
 import bodyParser from "body-parser";
 import { getCourse } from "./controllers/getCourse";
 import { enrollment } from "./controllers/enrollment";
+var cors = require('cors');
 
 const mongoose = require('mongoose');
 
@@ -13,7 +14,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
-
+app.use(cors({
+  origin: '*'
+}));
 
 mongoose.connect('mongodb+srv://admin:O3wztvd5tmuhUTNs@cluster0.jmlrtcw.mongodb.net/TrainingServiceDev');
 
