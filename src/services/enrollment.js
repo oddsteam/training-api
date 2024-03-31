@@ -2,7 +2,8 @@ const EnrollmentModel = require("../models/enrollment");
 
 export const create = async (body) => {
   try {
-    await EnrollmentModel.create(body);
+    const result = await EnrollmentModel.create(body);
+    return result;
   } catch (error) {
     console.log(error);
   }

@@ -3,9 +3,11 @@ const ClassService = require("../services/class");
 
 export const enrollment = async (req, res) => {
   try {
-    await EnrollmentService.create(req.body);
-    const classDetail = await ClassService.getClass('660902ba7a3e57bd0a00d416');
+    const { classId } = req.body;
+    const result = await EnrollmentService.create(req.body);
+    const classDetail = await ClassService.getClass(classId);
     console.log(classDetail);
+    console.log(result);
     res.send("success");
   } catch (error) {
     console.log(error);
