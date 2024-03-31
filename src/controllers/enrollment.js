@@ -14,7 +14,7 @@ export const enrollment = async (req, res) => {
       classDetail.className,
       classDetail.place
     );
-    mailingService.sendEmail(result.email, "", `${classDetail.className}-registration`, content);
+    mailingService.sendEmail(result.email, "", `${classDetail.className}-Registration`, content);
     res.send("success");
   } catch (error) {
     console.log(error);
@@ -32,5 +32,7 @@ function generateTemplate(name, className, place) {
 
   We look forward to your participation in this enriching class. Should you have any queries or require further assistance, please don't hesitate to reach out.
 
-Warm regards,`;
+Warm regards,
+
+Phonngsak Ritpitakphong`;
 }
