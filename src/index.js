@@ -1,10 +1,11 @@
 // index.js
 import express from "express";
 import courseRouter from "./routers/course";
+import classRouter from "./routers/class";
 import bodyParser from "body-parser";
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3009;
 
 app.use(bodyParser.json());
 
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/courses", courseRouter);
+app.use("/classes", classRouter);
 app.get("/healthcheck", (req, res) => {
   res.send("Ok!");
 });
