@@ -28,7 +28,7 @@ class MailingService {
                     Data: subject,
                 },
             },
-            Source: "noreply@odds.team",
+            Source: "jane@odds.team",
             ReplyToAddresses: [],
         };
 
