@@ -1,4 +1,5 @@
 
+const classService = require('../services/class');
 const enrollmentService = require('../services/enrollment');
 
 const setEmailClassReminder = function (req, res){ 
