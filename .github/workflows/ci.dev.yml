@@ -71,7 +71,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_DEV_KEY }}
           port: 22
-          envs: DOCKER_IMAGE_WITH_TAG
+          envs: DOCKER_IMAGE_WITH_TAG, DB_URI
           script: |
             export $AWS_ACCESS_KEY_ID
             export $AWS_SECRET_ACCESS_KEY
