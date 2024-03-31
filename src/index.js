@@ -7,6 +7,8 @@ import { getCourse } from "./controllers/getCourse";
 import { enrollment } from "./controllers/enrollment";
 var cors = require('cors');
 
+import "../loadEnvironment.mjs"
+
 const mongoose = require('mongoose');
 
 import { createContent } from "./reminder/template.js";
@@ -19,7 +21,8 @@ app.use(cors({
   origin: '*'
 }));
 
-mongoose.connect('mongodb+srv://admin:O3wztvd5tmuhUTNs@cluster0.jmlrtcw.mongodb.net/TrainingServiceDev');
+const connectionString = process.env.DB_URI || "";
+mongoose.connect(connectionString);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
