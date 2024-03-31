@@ -4,7 +4,7 @@ export const getClass = async (id) => {
     const data = await classDeatilsModel.find({
       _id: id,
     });
-    return data;
+    return data[0];
   } catch (error) {
     console.log(error);
   }

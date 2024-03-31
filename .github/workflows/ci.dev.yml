@@ -71,11 +71,11 @@ jobs:
           username: ubuntu
           key: ${{ secrets.HOST_DEV_KEY }}
           port: 22
-          envs: DOCKER_IMAGE_WITH_TAG
+          envs: DOCKER_IMAGE_WITH_TAG, DB_URI
           script: |
             export $AWS_ACCESS_KEY_ID
             export $AWS_SECRET_ACCESS_KEY
             aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 844772501268.dkr.ecr.ap-southeast-1.amazonaws.com
             docker pull $DOCKER_IMAGE_WITH_TAG
             docker rm -f training-api | true
-            docker run -p 3001:3001 --name training-api -d $DOCKER_IMAGE_WITH_TAG -e $DB_URI
+            docker run -p 3001:3001 --name training-api -e DB_URI=$DB_URI -d $DOCKER_IMAGE_WITH_TAG
