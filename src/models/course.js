@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const TrainerModel = require('./trainer');
+const mongoose = require("mongoose");
+const TrainerModel = require("./trainer");
 const Schema = mongoose.Schema;
 
 const courseSchema = new Schema({
@@ -7,9 +7,9 @@ const courseSchema = new Schema({
   duration: String,
   outline: String,
   images: [String],
-  trainers: [TrainerModel]
+  trainers: String,
 });
 
-const CourseModel = mongoose.model('Course', courseSchema);
+const CourseModel = mongoose.model("Course", courseSchema);
 
 module.exports = CourseModel;
