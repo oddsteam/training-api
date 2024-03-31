@@ -11,8 +11,6 @@ import "../loadEnvironment.mjs"
 
 const mongoose = require('mongoose');
 
-import { createContent } from "./reminder/template.js";
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
