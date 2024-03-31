@@ -15,6 +15,12 @@ const classDetailsSchema = new Schema({
     prerequisite: String,
     classGoal: String,
     maxParticipant: String,
+    preClassContent: String,
+    intructure: [{
+        email: String,
+        name: String,
+        experience: String,
+    }]
 });
 
 const classDeatilsModel = mongoose.model('Classes', classDetailsSchema);
