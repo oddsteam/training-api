@@ -1,16 +1,16 @@
-name: Continuous Integration (Dev)
+name: Continuous Integration (PROD)
 
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+-dev'
+      - '[0-9]+.[0-9]+.[0-9]+-prod'
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   DOCKER_IMAGE: 844772501268.dkr.ecr.ap-southeast-1.amazonaws.com/training-api
   DOCKER_REGISTRY: 844772501268.dkr.ecr.ap-southeast-1.amazonaws.com
-  DB_URI: ${{ secrets.DB_URI_DEV }}
+  DB_URI: ${{ secrets.DB_URI_PROD }}
 
 jobs:
   ci:
@@ -67,9 +67,9 @@ jobs:
         env:
           DOCKER_IMAGE_WITH_TAG: ${{ env.DOCKER_IMAGE }}:${{ github.ref_name }}
         with:
-          host: ${{ secrets.HOST_DEV }}
+          host: ${{ secrets.HOST_PROD }}
           username: ubuntu
-          key: ${{ secrets.HOST_DEV_KEY }}
+          key: ${{ secrets.HOST_PROD_KEY }}
           port: 22
           envs: DOCKER_IMAGE_WITH_TAG
           script: |

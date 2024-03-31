@@ -8,7 +8,7 @@ import { setEmailClassReminder } from "../controllers/reminder";
 const router = express.Router();
 
 
-const classService = require('../services/classDetails');
+const classService = require('../services/class');
 
 router.get("/:id", async (req,res) => {
     try {
