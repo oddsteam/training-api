@@ -7,7 +7,7 @@ const courseSchema = new Schema({
   duration: String,
   outline: String,
   images: [String],
-  trainers: String,
+  trainers: [String],
 });
 
 const CourseModel = mongoose.model("Course", courseSchema);
