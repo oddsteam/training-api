@@ -2,44 +2,42 @@
 import express from "express";
 import courseRouter from "./routers/course";
 import classRouter from "./routers/class";
+import classDetailsRouter from "./routers/classDetails";
 import bodyParser from "body-parser";
+const mongoose = require('mongoose');
+const EnrollmentModel = require('./models/enrollment');
+
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3009;
 
 app.use(bodyParser.json());
 
+mongoose.connect('mongodb+srv://admin:O3wztvd5tmuhUTNs@cluster0.jmlrtcw.mongodb.net/TraningServiceDev', {
+  useNewUrlParser: true,
+});
+mongoose.connection.on('error', () => {
+  throw new Error('unable to connect to database');
+});
+mongoose.connection.on('connected', () => {
+  console.log('Connected to database');
+});
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
 app.use("/courses", courseRouter);
 app.use("/classes", classRouter);
+app.use("/classes", classDetailsRouter);
 app.get("/healthcheck", (req, res) => {
   res.send("Ok!");
 });
 
-app.get("/classes/:classId", (req, res) => {
-  res.send({
-    name: "SCRUM MASTER COMPASS", // class detail
-    description: `ตอนผู้สอนทั้ง 2 มาเป็น ScrumMaster ใหม่ ๆ เราพบช่วงเวลายากลำบากหลายครั้ง`,
-    place: "Geeky Base All Star",
-    googleMapUrl: "https://maps.app.goo.gl/UQKuNzejJNNwVB2K9",
-    startDate: "31/3/2024",
-    ensDate: "31/3/2024",
-    startTime: "9:00",
-    endTime: "17:00",
-  });
-});
-
-app.get("/classes/:classId/remaing", (req, res) => {
-  res.send({
-    remaing: 1, // จำนวนที่นั่งที่เหลืออยู่
-  });
-});
-
 app.post("/register", (req, res) => {
   console.log(req.body);
+  EnrollmentModel.create(req.body);
   res.send("register");
 });
 
