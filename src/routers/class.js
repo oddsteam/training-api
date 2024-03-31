@@ -26,6 +26,6 @@ router.get("/:id", async (req,res) => {
 
 router.get("", getClasses);
 
-router.post("/reminder", setEmailClassReminder);
+router.post("/remind", setEmailClassReminder);
 
 export default router;
