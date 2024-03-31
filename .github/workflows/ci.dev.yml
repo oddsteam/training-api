@@ -28,7 +28,7 @@ jobs:
         with:
           images: ${{ env.DOCKER_IMAGE }}
           tags: |
-            type=raw,value={{date 'YYYYMMDDTHHmmss' tz='Asia/Bangkok'}}-${{ github.sha }}
+            type=raw,value=${{ github.ref_name }}
 
       - name: Build a Docker image
         uses: docker/build-push-action@v4
