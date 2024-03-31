@@ -5,21 +5,21 @@ import classRouter from "./routers/class";
 import bodyParser from "body-parser";
 import { getCourse } from "./controllers/getCourse";
 import { enrollment } from "./controllers/enrollment";
-var cors = require('cors');
+var cors = require("cors");
 
-import "../loadEnvironment.mjs"
+import "../loadEnvironment.mjs";
 
-const mongoose = require('mongoose');
-
-import { createContent } from "./reminder/template.js";
+const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
-app.use(cors({
-  origin: '*'
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 const connectionString = process.env.DB_URI || "";
 mongoose.connect(connectionString);
@@ -34,29 +34,28 @@ app.get("/healthcheck", (req, res) => {
   res.send("Ok!");
 });
 
-
 app.post("/register", enrollment);
 app.post("/register", async (req, res) => {
   console.log(req.body);
- try {
-  await EnrollmentModel.create(req.body);
- } catch (error) {
-  console.log(error);
- }
+  try {
+    await EnrollmentModel.create(req.body);
+  } catch (error) {
+    console.log(error);
+  }
   res.send("register");
 });
-app.get('/classes/:classId', (req, res) => {
+app.get("/classes/:classId", (req, res) => {
   res.send({
     name: "SCRUM MASTER COMPASS", // class detail
     description: `ตอนผู้สอนทั้ง 2 มาเป็น ScrumMaster ใหม่ ๆ เราพบช่วงเวลายากลำบากหลายครั้ง`,
-    place:"Geeky Base All Star",
+    place: "Geeky Base All Star",
     googleMapUrl: "https://maps.app.goo.gl/UQKuNzejJNNwVB2K9",
     startDate: "31/3/2024",
     endDate: "31/3/2024",
     startTime: "9:00",
     endTime: "17:00",
-  })
-})
+  });
+});
 
 app.get("/course/:courseId", getCourse);
 
