@@ -1,6 +1,9 @@
 // src/routes/itemRoutes.ts
 import express from "express";
 import { getClasses } from "../controllers/class";
+import { getClassDetails } from "../controllers/classDetails";
+import { setEmailClassReminder } from "../controllers/reminder";
+
 
 const router = express.Router();
 
@@ -22,5 +25,7 @@ router.get("/:id", async (req,res) => {
 })
 
 router.get("", getClasses);
+
+router.post("/reminder", setEmailClassReminder);
 
 export default router;
