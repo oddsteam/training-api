@@ -7,10 +7,10 @@ export const enrollment = async (req, res) => {
     const { classId } = req.body;
     const result = await EnrollmentService.create(req.body);
     const classDetail = await ClassService.getClass(classId);
-    mailingService = new MailingService();
+    const mailingService = new MailingService();
     
-    content = generateTemplate(
-      result.name,
+    const content = generateTemplate(
+      result.fullName,
       classDetail.className,
       classDetail.place
       );
