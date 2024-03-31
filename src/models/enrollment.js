@@ -6,6 +6,7 @@ const enrollmentSchema = new Schema({
   phoneNumber: String,
   company: String,
   classId: String,
+  email: String,
   createDate: Date
 });
 
