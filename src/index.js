@@ -43,22 +43,20 @@ app.post("/register", (req, res) => {
 
 app.get("/course/:courseId", (req, res) => {
   const courseId = req.params.courseId;
-  res.send([
-    {
-      courseName: "Test Course",
-      outline: "course outline",
-      agenda: "course agenda",
-      afterSaleService: "after sale service",
-      images: ["a", "b"],
-      trainer: [
-        {
-          name: "I AM",
-          image: "c",
-          experience: "trainer experience",
-        },
-      ],
-    },
-  ]);
+  res.send({
+    courseName: "Test Course",
+    duration: "1",
+    maxParticipant: "20",
+    outline: "Fundamental: Why What and How of Design Thinking\n Workshop: How to facilitates and tools recommend\n Incremental: Do design thininkg by team",
+    agenda: "course agenda",
+    afterSaleService: "after sale service",
+    images: ["a", "b"],
+    trainer: [{
+      name: "I AM",
+      image: "c",
+      experience: "trainer experience"
+    }]
+  });
 });
 
 app.listen(PORT, () => {
