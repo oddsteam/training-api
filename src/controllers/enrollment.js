@@ -8,13 +8,13 @@ export const enrollment = async (req, res) => {
     const result = await EnrollmentService.create(req.body);
     const classDetail = await ClassService.getClass(classId);
     const mailingService = new MailingService();
-    
+
     const content = generateTemplate(
       result.fullName,
       classDetail.className,
       classDetail.place
-      );
-    mailingService.sendEmail(result.email, "", "test", content);
+    );
+    mailingService.sendEmail(result.email, "", `${classDetail.className}-registration`, content);
     res.send("success");
   } catch (error) {
     console.log(error);
