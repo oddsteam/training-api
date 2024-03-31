@@ -1,5 +1,5 @@
 const EnrollmentService = require("../services/enrollment");
-const ClassService = require("../services/classDetails");
+const ClassService = require("../services/class");
 
 export const enrollment = async (req, res) => {
   try {
