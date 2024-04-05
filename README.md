@@ -12,3 +12,8 @@ npm run start
 
 1. ติดตั้ง [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 1. configure aws credentials ด้วย command `aws configure` (credentials อยู่ใน discord)
+
+## Deployment
+
+- ใส่ Tag `1.x.x-dev` เพื่อ Deploy เข้าเครื่อง Dev
+- ใส่ Tag `1.x.x-prod` เพื่อ Deploy เข้าเครื่อง Prod
