@@ -4,7 +4,6 @@ FROM node:20
 # Set the working directory inside the container
 WORKDIR /app
 
-
 COPY package*.json package-lock.json ./
 
 # Install dependencies
