@@ -6,6 +6,18 @@ npm i
 
 npm run start
 
+## Local
+
+### run docker
+
+- Docker compose up -d
+
+### URI DB
+
+```
+mongodb://root:example@localhost:27017/TrainingService?authSource=admin
+```
+
 ------
 
 กรณีที่ต้องการใช้ email service ให้ทำการ set up ดังนี้
