@@ -6,7 +6,7 @@ import { mockDataTrainingServiceDevTest } from "./src/mockData/TrainingServiceDe
 import { mockDataTrainingServiceDevClass } from "./src/mockData/TrainingServiceDevClasses";
 import { mockDataTrainingServiceTrainers } from "./src/mockData/TrainingServiceTrainers";
 
-const uri = "mongodb://root:example@localhost:27017/TrainingService?authSource=admin";
+const uri = process.env.DB_URI || "mongodb://root:example@localhost:27017/TrainingService?authSource=admin";
 
 const client = new MongoClient(uri);
 
@@ -16,13 +16,11 @@ async function runSeed() {
         const collections = ["classes", "courses", "enrollments", "instructors", "test", "trainers"]
         const listMockData = [mockDataTrainingServiceDevClass, mockDataTraningServiceDevCourse, mockDataTrainingServiceDevEnrollment, mockDataTrainingServiceDevInstructors, mockDataTrainingServiceDevTest, mockDataTrainingServiceTrainers]
 
-        database.dropDatabase()
-
         for (let i = 0; i < collections.length; i++) {
             if (listMockData[i].length !== 0) {
                 const collection = database.collection(collections[i]);
                 const result = await collection.insertMany(listMockData[i], { ordered: true });
-                console.log(`${result.insertedCount} documents were inserted`);
+                console.log(`${result.insertedCount} documents were inserted in ${collections[i]} collection`);
             } else {
                 await database.createCollection(collections[i]);
             }
