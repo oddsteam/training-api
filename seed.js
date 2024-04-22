@@ -6,7 +6,7 @@ import { mockDataTrainingServiceDevTest } from "./src/mockData/TrainingServiceDe
 import { mockDataTrainingServiceDevClass } from "./src/mockData/TrainingServiceDevClasses";
 import { mockDataTrainingServiceTrainers } from "./src/mockData/TrainingServiceTrainers";
 
-const uri = process.env.DB_URI || "mongodb://root:example@localhost:27017/TrainingService?authSource=admin";
+const uri = "mongodb://root:example@localhost:27017/TrainingService?authSource=admin";
 
 const client = new MongoClient(uri);
 
