@@ -1,24 +1,30 @@
 # Training API
 
-node v20
-
-npm i
-
-npm run start
-
 ## Local
+
+- node v20
+
+- npm i
+
+- npm run start
 
 ### run docker
 
 - Docker compose up -d
 
+### seed data
+
+- npm run seed
+
 ### URI DB
+Ø
+change .env file variable URI_DB follow below URI
 
 ```
 mongodb://root:example@localhost:27017/TrainingService?authSource=admin
 ```
 
-------
+---
 
 กรณีที่ต้องการใช้ email service ให้ทำการ set up ดังนี้
 
