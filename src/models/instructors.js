@@ -6,7 +6,7 @@ const instructor = new Schema({
   name: String,
   image: String,
 }, {
-  versionKey: false // You should be aware of the outcome after set to false
+  versionKey: false
 });
 
 const InstructorModel = mongoose.model("Instructor", instructor);

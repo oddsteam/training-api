@@ -14,7 +14,7 @@ const testSchema = new Schema({
   images: [String],
   createdAt: Date,
 }, {
-  versionKey: false // You should be aware of the outcome after set to false
+  versionKey: false
 });
 
 const TestModel = mongoose.model("Test", testSchema);

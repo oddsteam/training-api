@@ -10,7 +10,7 @@ const enrollmentSchema = new Schema({
   email: String,
   createDate: Date,
 }, {
-  versionKey: false // You should be aware of the outcome after set to false
+  versionKey: false
 });
 
 enrollmentSchema.pre('save', function (next) {

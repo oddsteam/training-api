@@ -23,7 +23,7 @@ const classDetailsSchema = new Schema({
         experience: String,
     }]
 }, {
-    versionKey: false // You should be aware of the outcome after set to false
+    versionKey: false
 });
 
 const ClassDeatilsModel = mongoose.model('Classes', classDetailsSchema);

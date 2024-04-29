@@ -14,7 +14,7 @@ const courseSchema = new Schema({
   trainers: [String],
   courseOutlineTh: String
 }, {
-  versionKey: false // You should be aware of the outcome after set to false
+  versionKey: false
 });
 
 const CourseModel = mongoose.model("Course", courseSchema);
