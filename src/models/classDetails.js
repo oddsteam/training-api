@@ -2,16 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const classDetailsSchema = new Schema({
+    _id: { type: Schema.Types.ObjectId, unique: true },
     courseName: String,
     className: String,
     description: String,
     place: String,
-    googleMapUrl: Date,
-    startDate: String,
-    endDate: String,
+    googleMapUrl: String,
+    startDate: Date,
+    endDate: Date,
     startTime: String,
     endTime: String,
-    category: String,
+    category: [String],
     prerequisite: String,
     classGoal: String,
     maxParticipant: String,
@@ -21,8 +22,10 @@ const classDetailsSchema = new Schema({
         name: String,
         experience: String,
     }]
+}, {
+    versionKey: false
 });
 
-const classDeatilsModel = mongoose.model('Classes', classDetailsSchema);
+const ClassDeatilsModel = mongoose.model('Classes', classDetailsSchema);
 
-module.exports = classDeatilsModel;
+module.exports = ClassDeatilsModel;

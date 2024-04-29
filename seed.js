@@ -1,32 +1,38 @@
-import { MongoClient } from "mongodb";
-import { mockDataTraningServiceDevCourse } from "./src/mockData/TrainingServiceDev.courses";
-import { mockDataTrainingServiceDevEnrollment } from "./src/mockData/TrainingServiceDev.enrollments";
-import { mockDataTrainingServiceDevInstructors } from "./src/mockData/TrainingServiceDev.instructors";
-import { mockDataTrainingServiceDevTest } from "./src/mockData/TrainingServiceDev.test";
-import { mockDataTrainingServiceDevClass } from "./src/mockData/TrainingServiceDevClasses";
-import { mockDataTrainingServiceTrainers } from "./src/mockData/TrainingServiceTrainers";
+import { ObjectId } from "bson";
+import mongoose from "mongoose";
+import { mockDataTrainingServiceCourses as mockDataCourse } from "./src/mockData/TrainingService.courses";
+import { mockDataTrainingServiceEnrollments as mockDataEnrollment } from "./src/mockData/TrainingService.enrollments";
+import { mockDataTrainingServiceDevInstructors as mockDataInstructor } from "./src/mockData/TrainingService.instructors";
+import { mockDataTrainingServiceTests as mockDataTest } from "./src/mockData/TrainingService.tests";
+import { mockDataTrainingServiceClasses as mockDataClass } from "./src/mockData/TrainingServiceDev.classes";
+import { mockDataTrainingServiceTrainers as mockDataTrainer } from "./src/mockData/TrainingServiceTrainers";
+import ClassDeatilsModel from "./src/models/classDetails";
+import CourseModel from "./src/models/course";
+import EnrollmentModel from "./src/models/enrollment";
+import InstructorModel from "./src/models/instructors";
+import TestModel from "./src/models/test";
+import TrainerModel from "./src/models/trainer";
 
 const uri = process.env.DB_URI || "mongodb://root:example@localhost:27017/TrainingService?authSource=admin";
 
-const client = new MongoClient(uri);
+mongoose.connect(uri)
 
 async function runSeed() {
     try {
-        const database = client.db("TrainingService");
-        const collections = ["classes", "courses", "enrollments", "instructors", "test", "trainers"]
-        const listMockData = [mockDataTrainingServiceDevClass, mockDataTraningServiceDevCourse, mockDataTrainingServiceDevEnrollment, mockDataTrainingServiceDevInstructors, mockDataTrainingServiceDevTest, mockDataTrainingServiceTrainers]
+        const collections = [CourseModel, EnrollmentModel, InstructorModel, TestModel, ClassDeatilsModel, TrainerModel]
+        const listMockData = [mockDataCourse, mockDataEnrollment, mockDataInstructor, mockDataTest, mockDataClass, mockDataTrainer]
 
         for (let i = 0; i < collections.length; i++) {
-            if (listMockData[i].length !== 0) {
-                const collection = database.collection(collections[i]);
-                const result = await collection.insertMany(listMockData[i], { ordered: true });
-                console.log(`${result.insertedCount} documents were inserted in ${collections[i]} collection`);
-            } else {
-                await database.createCollection(collections[i]);
+            await collections[i].createCollection()
+            for (let j = 0; j < listMockData[i].length; j++) {
+                if (listMockData[i].length !== 0) {
+                    await collections[i].updateOne({ _id: new ObjectId(listMockData[i][j]._id) }, { $set: listMockData[i][j] }, { upsert: true })
+                }
             }
+            console.log("create collection", collections[i], "success")
         }
     } finally {
-        await client.close();
+        await mongoose.disconnect();
     }
 }
 runSeed()
